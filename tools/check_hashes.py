@@ -16,7 +16,7 @@ starter_file_hashes = {
     "tools/framework.py": "a7b90bba1c23f3edffbc2593c2ef15b9",
     "tools/results_to_gif.py": "990fba3042d1ba07718c0e240f31f14e",
     "tools/run_test.sh": "fd44999a528c848997de2cb07b12b6e9",
-    "tools/staff_tests.py": "03f5a497ce0046f97f0902e6eba262ef",
+    "tools/staff_tests.py": "1f7e86df7ea5ff379c13c0c5c55068d4",
 }
 
 

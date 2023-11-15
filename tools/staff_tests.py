@@ -5,6 +5,18 @@ import filters
 
 
 @Test()
+def test_tiny(test: TestSpec):
+    test.add_task(Task(Matrix.random(2, 2, min_value=1, max_value=10),
+                  Matrix.random(2, 2, min_value=1, max_value=10)))
+    test.add_task(Task(Matrix.random(4, 4, min_value=1, max_value=10),
+                  Matrix.random(2, 2, min_value=1, max_value=10)))
+    test.add_task(Task(Matrix.random(5, 3, min_value=1, max_value=10),
+                  Matrix.random(4, 2, min_value=1, max_value=10)))
+    test.add_task(Task(Matrix.random(5, 4, min_value=1, max_value=10),
+                  Matrix.random(4, 3, min_value=1, max_value=10)))
+
+
+@Test()
 def test_small(test: TestSpec):
     for _ in range(10):
         rows_a = randint(15, 25)
@@ -38,6 +50,7 @@ def test_gif_kachow_blur(test: TestSpec):
 def test_gif_kachow_sharpen(test: TestSpec):
     test.add_gif("/home/ff/cs61c/fa23/proj4/gifs/kachow.gif",
                  filters.SharpenFilter.create(size=3, sigma=1))
+
 
 # Autograder Tests
 
