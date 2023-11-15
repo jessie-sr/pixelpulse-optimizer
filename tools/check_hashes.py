@@ -16,8 +16,9 @@ starter_file_hashes = {
     "tools/framework.py": "90eb1bb3115e7254dc44b6a3f29f6fc9",
     "tools/results_to_gif.py": "990fba3042d1ba07718c0e240f31f14e",
     "tools/run_test.sh": "fd44999a528c848997de2cb07b12b6e9",
-    "tools/staff_tests.py": "3055796b45630254ac8c8422ac5d9b47",
+    "tools/staff_tests.py": "03f5a497ce0046f97f0902e6eba262ef",
 }
+
 
 def check_hash(rel_path_str):
     if rel_path_str not in starter_file_hashes:
@@ -30,6 +31,7 @@ def check_hash(rel_path_str):
     if hashed_val != starter_file_hashes[rel_path_str]:
         return (False, f"{rel_path_str} was changed from starter")
     return (True, f"{rel_path_str} matches starter file")
+
 
 passed_all = True
 for rel_path_str in starter_file_hashes.keys():
