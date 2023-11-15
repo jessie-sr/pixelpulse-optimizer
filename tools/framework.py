@@ -111,6 +111,9 @@ class Task:
         self.a_matrix = a_matrix
         self.b_matrix = b_matrix
 
+        assert a_matrix.rows >= b_matrix.rows, "Rows of matrix A must be greater than or equal to the rows in matrix B"
+        assert a_matrix.cols >= b_matrix.cols, "Columns of matrix A must be greater than or equal to the columns in matrix B"
+
     def generate(self, path: Path):
         path.mkdir(exist_ok=True)
         self.a_matrix.generate(path / "a.bin")

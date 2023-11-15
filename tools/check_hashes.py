@@ -13,7 +13,7 @@ starter_file_hashes = {
     "src/io.o": "6ec54fad1205fd112ea755eadcf74238",
     "tools/check_output.sh": "90abd43257eb688aa86abecae04c68db",
     "tools/create_tests.py": "fbd72ce779c69a7c131889c5bfa1e398",
-    "tools/framework.py": "90eb1bb3115e7254dc44b6a3f29f6fc9",
+    "tools/framework.py": "a7b90bba1c23f3edffbc2593c2ef15b9",
     "tools/results_to_gif.py": "990fba3042d1ba07718c0e240f31f14e",
     "tools/run_test.sh": "fd44999a528c848997de2cb07b12b6e9",
     "tools/staff_tests.py": "03f5a497ce0046f97f0902e6eba262ef",
