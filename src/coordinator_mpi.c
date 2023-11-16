@@ -14,8 +14,8 @@ int main(int argc, char *argv[]) {
   }
 
   // TODO: implement Open MPI coordinator
-  // Initialize MPI
   MPI_Init(&argc, &argv);
+
   int procID, totalProcs;
   MPI_Comm_size(MPI_COMM_WORLD, &totalProcs);
   MPI_Comm_rank(MPI_COMM_WORLD, &procID);
@@ -28,9 +28,10 @@ int main(int argc, char *argv[]) {
   }
 
   if (procID == 0) {
-    // Manager node
-    int nextTask = 0;
+    // Manager process
+
     MPI_Status status;
+    int nextTask = 0;
     int32_t message;
 
     while (nextTask < num_tasks) {
@@ -40,6 +41,7 @@ int main(int argc, char *argv[]) {
       nextTask++;
     }
 
+    // Wait for all workers to finish
     for (int i = 1; i < totalProcs; i++) {
       MPI_Recv(&message, 1, MPI_INT, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, &status);
       int source = status.MPI_SOURCE;
@@ -48,21 +50,31 @@ int main(int argc, char *argv[]) {
     }
 
   } else {
-      // Worker node
+
+    // Worker node
     int32_t message;
+
     while (true) {
       message = READY;
       MPI_Send(&message, 1, MPI_INT, 0, 0, MPI_COMM_WORLD);
       MPI_Recv(&message, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
-      if (message == TERMINATE) break;
+      if (message == TERMINATE) {
+        break;
+      }
 
-      // Execute the task
       if (execute_task(tasks[message])) {
-        printf("Task %d failed on process %d\n", message, procID);
+        printf("Task %d failed\n", message);
+        return -1;
       }
     }
   }
+
+  for (int i = 0; i < num_tasks; i++) {
+    free(tasks[i]->path);
+    free(tasks[i]);
+  }
+  free(tasks);
 
   MPI_Finalize();
   return 0;
